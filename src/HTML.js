@@ -48,7 +48,8 @@ export default class HTML extends PureComponent {
         baseFontStyle: PropTypes.object.isRequired,
         textSelectable: PropTypes.bool,
         renderersProps: PropTypes.object,
-        allowFontScaling: PropTypes.bool
+        allowFontScaling: PropTypes.bool,
+        refreshDOM: PropTypes.bool,
     }
 
     static defaultProps = {
@@ -65,7 +66,8 @@ export default class HTML extends PureComponent {
         tagsStyles: {},
         classesStyles: {},
         textSelectable: false,
-        allowFontScaling: true
+        allowFontScaling: true,
+        refreshDOM: false,
     }
 
     constructor (props) {
@@ -95,6 +97,12 @@ export default class HTML extends PureComponent {
             // If the source changed, register the new HTML and parse it
             this.registerDOM(this.props);
         }
+
+        
+        if (this.props.refreshDOM !== prevProps.refresh) {
+            this.parseDOM(this.state.dom, this.props);
+        }
+
         if (this.state.dom !== prevState.dom) {
             this.parseDOM(this.state.dom, this.props);
         }
