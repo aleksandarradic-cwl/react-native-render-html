@@ -99,7 +99,7 @@ export default class HTML extends PureComponent {
         }
 
         
-        if (this.props.refreshDOM !== prevProps.refresh) {
+        if (this.props.refreshDOM !== prevProps.refreshDOM) {
             this.parseDOM(this.state.dom, this.props);
         }
 
